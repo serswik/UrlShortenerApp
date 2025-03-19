@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 namespace UrlShortenerApp.Server.Models
 {
     public class ShortUrl
@@ -15,5 +16,8 @@ namespace UrlShortenerApp.Server.Models
         public string CreatedBy { get; set; } = string.Empty;
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+        public string? UserId { get; set; }
+        public IdentityUser? User { get; set; }
     }
 }
