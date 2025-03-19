@@ -40,6 +40,8 @@
         "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy"
       }
     }
+  },
+  "ConnectionStrings": {
+    "DefaultConnection": "Data Source=shorturls.db"
   }
 }
-
