@@ -1,0 +1,22 @@
+<div>
+  <h1>URL Shortener</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Original URL</th>
+        <th>Shortened URL</th>
+        <th>Created By</th>
+        <th>Created At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let url of shortenedUrls">
+        <td>{{ url.originalUrl }}</td>
+        <td>{{ url.shortCode }}</td>
+        <td>{{ url.createdBy }}</td>
+        <td>{{ url.createdAt }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
