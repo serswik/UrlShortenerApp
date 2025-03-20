@@ -377,6 +377,7 @@ appsettings.Development.json
 appsettings.Production.json
 appsettings.Local.json
 launchsettings.json
+appsettings.json
 
 # Node modules
 node_modules/

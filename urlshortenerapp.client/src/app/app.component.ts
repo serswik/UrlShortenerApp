@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
   }
 
   getShortenedUrls() {
-    this.http.get<ShortenedUrl[]>("http://localhost:5111/api/urls").subscribe(
+    this.http.get<ShortenedUrl[]>("https://localhost:7225/api/Urls/public").subscribe(
       (result) => {
         this.shortenedUrls = result;
       },

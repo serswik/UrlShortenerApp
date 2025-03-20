@@ -22,7 +22,7 @@ namespace UrlShortenerApp.Server.Controllers
             _shortUrlService = shortUrlService;
         }
 
-        [HttpGet]
+        [HttpGet("all")]
         [Authorize]
         public async Task<IActionResult> GetUrls()
         {
@@ -106,13 +106,23 @@ namespace UrlShortenerApp.Server.Controllers
             return NoContent();
         }
 
-        //test
         [HttpGet("public")]
         [AllowAnonymous]
         public async Task<IActionResult> GetPublicUrls()
         {
             var urls = await _context.ShortUrls.Take(10).ToListAsync();
+            if (urls == null || !urls.Any())
+            {
+                return NotFound("No public URLs found.");
+            }
             return Ok(urls);
+        }
+
+        [HttpGet("test")]
+        [AllowAnonymous]
+        public IActionResult GetTest()
+        {
+            return Ok(new { message = "API is working!" });
         }
     }
 }
