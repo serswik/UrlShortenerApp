@@ -16,14 +16,22 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) { }
 
   onSubmit() {
+    console.log('Logging in with:', this.username, this.password);
     this.authService.login(this.username, this.password).subscribe(
       (response: AuthResponse) => {
+        console.log('Login successful', response);
         this.authService.setToken(response.token);
         this.router.navigate(['/dashboard']);
       },
       (error) => {
-        this.errorMessage = 'Invalid login credentials';
+        console.error('Error during login', error);
+        if (error.error && error.error.message) {
+          this.errorMessage = error.error.message;
+        } else {
+          this.errorMessage = 'Invalid login credentials';
+        }
       }
     );
   }
+
 }
