@@ -15,6 +15,7 @@ interface ShortenedUrl {
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  standalone: true,
   imports: [CommonModule, HttpClientModule]
 })
 export class AppComponent implements OnInit {
