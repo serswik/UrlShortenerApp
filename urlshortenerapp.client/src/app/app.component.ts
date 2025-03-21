@@ -1,38 +1,40 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common'
+import { HttpClientModule } from '@angular/common/http'
 
-interface WeatherForecast {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
+interface ShortenedUrl {
+  id: number;
+  originalUrl: string;
+  shortCode: string;
+  createdBy: string;
+  createdAt: string;
 }
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  standalone: false,
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
+  standalone: true,
+  imports: [CommonModule, HttpClientModule]
 })
 export class AppComponent implements OnInit {
-  public forecasts: WeatherForecast[] = [];
+  public shortenedUrls: ShortenedUrl[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.getForecasts();
+    this.getShortenedUrls();
   }
 
-  getForecasts() {
-    this.http.get<WeatherForecast[]>('/weatherforecast').subscribe(
+  getShortenedUrls() {
+    this.http.get<ShortenedUrl[]>("https://localhost:7225/api/Urls/public").subscribe(
       (result) => {
-        this.forecasts = result;
+        this.shortenedUrls = result;
       },
       (error) => {
         console.error(error);
       }
     );
   }
-
-  title = 'urlshortenerapp.client';
 }

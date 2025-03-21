@@ -28,18 +28,19 @@ describe('AppComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should retrieve weather forecasts from the server', () => {
-    const mockForecasts = [
-      { date: '2021-10-01', temperatureC: 20, temperatureF: 68, summary: 'Mild' },
-      { date: '2021-10-02', temperatureC: 25, temperatureF: 77, summary: 'Warm' }
+  it('should retrieve shortened URLs from the server', () => {
+    const mockUrls = [
+      { id: 1, originalUrl: 'http://example.com', shortCode: 'abc123', createdBy: 'user1', createdAt: '2023-03-20T12:00:00Z' },
+      { id: 2, originalUrl: 'http://another.com', shortCode: 'def456', createdBy: 'user2', createdAt: '2023-03-21T14:00:00Z' }
     ];
 
     component.ngOnInit();
 
-    const req = httpMock.expectOne('/weatherforecast');
+    const req = httpMock.expectOne('/api/shortened-urls');
     expect(req.request.method).toEqual('GET');
-    req.flush(mockForecasts);
 
-    expect(component.forecasts).toEqual(mockForecasts);
+    req.flush(mockUrls);
+
+    expect(component.shortenedUrls).toEqual(mockUrls);
   });
 });
